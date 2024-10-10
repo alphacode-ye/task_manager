@@ -3,14 +3,14 @@ import time
 
 class user1:
 
-    def __init__(self, user_name ,password ,new_task):
+    def __init__(self, user_name ,password1 = None ,new_task =None ):
         self.user_name = user_name
         self.task_list = []
         self.log_phone_usa = "5:22"
-        self.password = password
+        self.password = password1
         self.new_task = new_task
     
-    def create_task(self ):
+    def create_task(self):
         print("hi" + self.user_name)
         time.sleep(1)
         self.new_task = input("what is your new target?\n")
@@ -25,13 +25,16 @@ class user1:
                 self.num =+ 1
             time.sleep(1)
             print("totel tasks you have \n" + str(self.num))
-        else:
+            return True
+        elif lin == 0:
             print("no task found ")
+            return False
+        print(lin)
     
     def log_phone_usage(self):
         print("your phone usage is : "+self.log_phone_usa)
     
-    def password_check(self):
+    def password_check(self) :
         self.stop = True
         while self.stop:
             self.password = input("enter password:\n")
@@ -41,11 +44,10 @@ class user1:
                 time.sleep(1)
                 print("Good luck")
                 self.stop = False
-                
+                return True
             else:
                 print("I'm sorry, my friend, but your password is weak")
                 time.sleep(1)
                 print("You must use special symbols, uppercase and lowercase letters, and numbers.")
-                
+                return False
 
-                
