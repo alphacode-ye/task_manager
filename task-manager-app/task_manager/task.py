@@ -7,10 +7,8 @@ class tasks_manger(user.user1):
     
     def __init__(self , user_name) -> None:
         self.user_name = user_name
-        self.load_user_data()
-        super().__init__(user_name)
         self.target = None
-        self.save_user_data()
+        self.load_user_data()
     
     def load_user_data(self):
         try:

@@ -83,6 +83,7 @@ class user1:
         }
         with open('data\\data.json', 'w') as file:
             json.dump(user_data, file, indent=4)
+        return self.task_list
         
     def load_user_data(self):
         try:
