@@ -1,14 +1,28 @@
 {
     "Yusuf": {
         "name": "Yusuf",
-        "password": "yswef1234",
+        "password": null,
         "log_phone_usa": "5:22",
         "task_list": {
             "Complete the project": {
                 "description": "Project description",
                 "deadline": "2024-12-31",
-                "priority": "red"
+                "priority": "red",
+                "status": "Complete"
+                
+            },
+            "sleep": {
+                "description": "go to sleep",
+                "deadline": "2 days",
+                "priority": "green",
+                "status": "Complete"
             }
         }
+    },
+    "test": {
+        "name": "test",
+        "password": null,
+        "log_phone_usa": "5:22",
+        "task_list": {}
     }
 }

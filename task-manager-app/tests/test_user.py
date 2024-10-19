@@ -44,7 +44,7 @@ class TestUser(unittest.TestCase):
     def test_view_tasks_no_tasks(self):
         self.test_user1.task_list = {}  # تأكد من أن قائمة المهام فارغة
         te = self.test_user1.view_tasks()
-        self.assertEqual(te, False, "Expected False when there are no tasks")
+        self.assertEqual(te, "No task found" , "Expected False when there are no tasks")
 
 
 if __name__ == '__main__':
