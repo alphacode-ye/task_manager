@@ -94,7 +94,10 @@ class user1:
                 self.log_phone_usa = user_info.get("log_phone_usa", self.log_phone_usa)
                 self.task_list = user_info.get("task_list", {})
         except (json.JSONDecodeError, FileNotFoundError):
+            with open('data\\data.json', "x") as file:
+                return None
             pass
+        
 
 
 

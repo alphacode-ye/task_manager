@@ -1,15 +1,12 @@
 {
     "Yusuf": {
         "name": "Yusuf",
-        "password": null,
-        "log_phone_usa": "5:22",
         "task_list": {
             "Complete the project": {
-                "description": "Project description",
-                "deadline": "2024-12-31",
+                "description": "1",
+                "deadline": "2 days",
                 "priority": "red",
                 "status": "Complete"
-                
             },
             "sleep": {
                 "description": "go to sleep",
