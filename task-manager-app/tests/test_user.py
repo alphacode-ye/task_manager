@@ -29,12 +29,12 @@ class TestUser(unittest.TestCase):
     @patch('builtins.open', new_callable=mock_open)
     @patch('builtins.input', return_value="yswef1234")
     def test_password_check_success(self, mock_input , mock_open):
-        a = self.test_user1.password_check()
+        a = self.test_user1._password_check()
         self.assertEqual(a, True, "Password check did not return True for a strong password")
 
     @patch('builtins.input', return_value="12345")
     def test_password_check_failure(self, mock_input):
-        a = self.test_user1.password_check()
+        a = self.test_user1._password_check()
         self.assertEqual(a, False, "Password check did not return False for a weak password")
 
     def test_view_tasks_with_tasks(self):

@@ -1,3 +1,4 @@
+#user class user.py
 import re
 import time
 import json
@@ -22,6 +23,7 @@ class user1:
         priority = input("What is the danger of the mission [1 = red, 2 = yellow, 3 = green]\n")
         self.new_task_priority = self.task_priorityS[int(priority) - 1]
         self.task_list[self.new_task] = {
+            "task" : self.new_task , 
             "description": self.task_descrip,
             "deadline": self.task_deadlien,
             "priority": self.new_task_priority,
@@ -50,7 +52,7 @@ class user1:
     def log_phone_usage(self):
         print("Your phone usage is: " + self.log_phone_usa)
     
-    def password_check(self):
+    def _password_check(self):
         self.stop = True
         while self.stop:
             self.password = input("Enter password:\n")
@@ -94,7 +96,7 @@ class user1:
                 self.log_phone_usa = user_info.get("log_phone_usa", self.log_phone_usa)
                 self.task_list = user_info.get("task_list", {})
         except (json.JSONDecodeError, FileNotFoundError):
-            with open('data\\data.json', "x") as file:
+            with open('data\\data.json', "w") as file:
                 return None
             pass
         

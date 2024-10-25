@@ -1,3 +1,4 @@
+#task class task.py
 import json
 import time
 import os
@@ -8,6 +9,7 @@ class tasks_manager(user1):
     def __init__(self, user_name) -> None:
         self.user_name = user_name
         self.target = None
+        self.subtasks = []
         self.load_user_data()
 
     def get_data_file_path(self):
@@ -50,7 +52,7 @@ class tasks_manager(user1):
         except (IndexError, ValueError):
             self.target = None
             return "error"
-
+    
     def edit_task(self):
         self.define_the_mission()
         if self.target and self.target != "error":
@@ -67,18 +69,18 @@ class tasks_manager(user1):
                     print("Change done.")
                     return True
                 else:
-                    print("Invalid selection.")
+                    print("Invalid selection")
                     return "error"
             except ValueError:
-                print("Invalid input.")
+                print("Invalid input")
                 return "error"
         elif self.target is None:
             print("No task found to change")
             return "error"
         else:
-            print("No task with this number.")
+            print("No task with this number")
             return "error"
-
+        
     def mark_complete(self):
         self.define_the_mission()
         if self.target and self.target != "error":
@@ -93,15 +95,15 @@ class tasks_manager(user1):
                     self.save_user_data()
                     return "In progress"
                 else:
-                    print("Invalid value. Please choose 1 or 2.")
+                    print("Invalid value Please choose 1 or 2")
                     return "error"
             except ValueError:
-                print("Invalid input.")
+                print("Invalid input")
                 return "error"
         else:
             print("No task found")
             return "error"
-
+        
     def delete_task(self):
         self.define_the_mission()
         if self.target and self.target != "error":
@@ -123,20 +125,26 @@ class tasks_manager(user1):
         else:
             print("No task found")
             return "error"
-
+        
     def save_user_data(self):
         try:
             with open(self.get_data_file_path(), 'r') as file:
                 user_data = json.load(file)
         except (json.JSONDecodeError, FileNotFoundError):
             user_data = {}
-
         user_data[self.user_name] = {
             "name": self.user_name,
             "task_list": self.task_list
         }
         with open(self.get_data_file_path(), 'w') as file:
             json.dump(user_data, file, indent=4)
+        
+    def add_subtask(self, subtask):
+        self.subtasks.append(subtask)
+    
+    def check_completion(self):
+        if all(subtask.status == "Complete" for subtask in self.subtasks):
+            self.status = "Complete"
+        return self.status
 
-y = tasks_manager("Yusuf")
-y.edit_task()
+
