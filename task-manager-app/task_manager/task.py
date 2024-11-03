@@ -126,6 +126,7 @@ class tasks_manager(user1):
             print("No task found")
             return "error"
         
+        
     def save_user_data(self):
         try:
             with open(self.get_data_file_path(), 'r') as file:
@@ -138,9 +139,15 @@ class tasks_manager(user1):
         }
         with open(self.get_data_file_path(), 'w') as file:
             json.dump(user_data, file, indent=4)
-        
+    
+    
     def add_subtask(self, subtask):
+        self.define_the_mission()
         self.subtasks.append(subtask)
+        self.task_list[self.target]["subtask"] = self.subtasks[len(subtask) + 1]
+        self.save_user_data()
+        return self.subtasks
+    
     
     def check_completion(self):
         if all(subtask.status == "Complete" for subtask in self.subtasks):
