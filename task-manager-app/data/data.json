@@ -1,29 +1,57 @@
 {
-    "Yusuf": {
-        "name": "Yusuf",
+    "yswef": {
+        "name": "yswef",
+        "password": "yswef123",
+        "log_phone_usa": "5:22",
         "task_list": {
             "Complete the project": {
-                "description": "1",
-                "deadline": "2 days",
+                "task": "Complete the project",
+                "description": "complete task manager progict ",
+                "deadline": "30-1-2025",
                 "priority": "red",
-                "status": "Complete"
+                "status": "In progress",
+                "subtask": []
             },
             "sleep": {
                 "description": "go to sleep",
-                "deadline": "2 days",
+                "deadline": "10-3-2025",
                 "priority": "green",
-                "status": "Complete",
+                "status": "In progress",
                 "subtask": [
                     {
-                        "w": "In progres"
+                        "love1": "In progress"
+                    },
+                    {
+                        "love2": "Complete"
                     }
                 ]
+            },
+            "eat food": {
+                "task": "eat food",
+                "description": "any thing",
+                "deadline": "3",
+                "priority": "Green",
+                "status": "In progress",
+                "subtask": []
             }
         }
     },
     "test": {
         "name": "test",
-        "password": null,
+        "task_list": {
+            "eat any thing": {
+                "task": "eat any thing",
+                "description": "40",
+                "deadline": "12-12-2024",
+                "priority": "red",
+                "status": "In progress",
+                "subtask": []
+            }
+        }
+    },
+    "yswef1": {
+        "name": "yswef",
+        "password": "yswef1234",
         "log_phone_usa": "5:22",
         "task_list": {}
     }

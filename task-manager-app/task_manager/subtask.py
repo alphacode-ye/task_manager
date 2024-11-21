@@ -1,14 +1,39 @@
 # subtask.py
+from task_manager.task import Tasks_manager
 
-from task import tasks_manager
-
-class SubTask(tasks_manager):
-    def __init__(self, task_name, description, deadline, priority):
-        super().__init__(task_name, description, deadline, priority)
-        self.status = "In progress"
+class SubTask():
+    def __init__(self , username):
+        self.Tasks_manager = Tasks_manager(username )
+        self.Tasks_manager.load_user_data()
+        self.subtasks = []
     
     def mark_complete(self):
-        self.status = "Complete"
+        try:
+            i = []
+            self.Tasks_manager.define_the_mission()
+            for sub in self.Tasks_manager.task_list[self.Tasks_manager.target]["subtask"]:
+                for s in sub.keys():
+                    self.subtasks.append(s)
+            for i in range(len(self.subtasks)):
+                print(f"{i +1}.{self.subtasks[i]}")
+            dtask = int(input("enter tha task you finsh it.\n"))
+            self.Tasks_manager.task_list[self.Tasks_manager.target]["subtask"][dtask-1][self.subtasks[dtask-1]] = "Complete"
+            self.Tasks_manager.check_completion()
+            # self.Tasks_manager.save_user_data()
+            return 0
+        except BaseException as a:
+            print(a)
+            print("no subtask fond ")
+            return None
     
+
+
+
+
+
+
+
+
+
 
 
