@@ -14,16 +14,17 @@ class SubTask():
             for sub in self.Tasks_manager.task_list[self.Tasks_manager.target]["subtask"]:
                 for s in sub.keys():
                     self.subtasks.append(s)
-            for i in range(len(self.subtasks)):
-                print(f"{i +1}.{self.subtasks[i]}")
-            dtask = int(input("enter tha task you finsh it.\n"))
+                if sub:
+                    for i in range(len(self.subtasks)):
+                        print(f"{i +1}.{self.subtasks[i]}")
+                    dtask = int(input("enter tha task you finsh it.\n"))
             self.Tasks_manager.task_list[self.Tasks_manager.target]["subtask"][dtask-1][self.subtasks[dtask-1]] = "Complete"
             self.Tasks_manager.check_completion()
-            # self.Tasks_manager.save_user_data()
+            self.Tasks_manager.save_user_data()
             return 0
         except BaseException as a:
-            print(a)
-            print("no subtask fond ")
+            # print(a)
+            print("no subtask is found")
             return None
     
 

@@ -52,5 +52,3 @@ class StudyTask (Taskcategory):
 
 
 
-
-

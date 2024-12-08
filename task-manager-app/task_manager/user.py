@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 class User:
-    def __init__(self, user_name, password1 ="password1" , log_phone_use ="5:22"):
+    def __init__(self, user_name, password1 =None , log_phone_use ="5:22"):
         self.user_name = user_name
         self.log_phone_usa = log_phone_use
         # users must have passwords can't be null
@@ -43,7 +43,7 @@ class User:
         self.task_list[self.new_task] = {
             "task" : self.new_task , 
             "description": self.task_descrip,
-            "deadline": self.task_deadlien,
+            "deadline": f"{self.task_deadlien}",
             "priority": self.new_task_priority,
             "status" : self.status,
             "subtask": []
@@ -57,10 +57,10 @@ class User:
             for task_name, details in self.task_list.items():
                 print("\033[1mTask \033[31m"+ str(a) +"\033[0m : " + task_name)
                 print("\033[0m\033[3m   Description: " + details["description"])
-                print("   Deadline: " + details["deadline"])
-                print("   Priority: " + details["priority"])
-                print("   status: " + details["status"])
-                print("\033[0m\033[1m-" * 30 + "\033[0m")
+                print("     Deadline: " + details["deadline"])
+                print("     Priority: " + details["priority"])
+                print("     status: " + details["status"])
+                print("\033[0m\033[1m-" * 50 + "\033[0m")
                 a = a + 1
             print("Total tasks you have: " + str(len(self.task_list)))
             return True
@@ -69,24 +69,35 @@ class User:
             return "No task found"
         
     def log_phone_usage(self):
-        print("Your phone usage is: " + self.log_phone_usa)
+        print("Your phone usage is: " + str(self.log_phone_usa))
     
     def _password_check(self):
         self.stop = True
         wronge = 0
         while self.stop:
-            self.password = input("Enter password:\n")
-            if re.fullmatch(r'[A-Za-z0-9@!$%^&+=]{8,}', self.password):
-                time.sleep(1)
-                print("Your password is strong.")
-                time.sleep(1)
-                print("Good luck")
-                self.stop = False
-                # self.save_user_data()  
-                return self.password
+            self.password = input("\033[46mEnter password:\033[0m\n")
+            if self.old_password == None:
+                if re.fullmatch(r'[A-Za-z0-9@!$%^&+=_ ]{8,}', self.password):
+                    time.sleep(1)
+                    print("Your password is strong.")
+                    time.sleep(1)
+                    print("Good luck")
+                    self.stop = False
+                    # self.save_user_data()  
+                    return self.password
+                else:
+                    print("I'm sorry, my friend, but your password is weak")
+                    print("You must use special symbols, uppercase and lowercase letters,numbers, and 8 chars .")
+                    wronge += 1
+                    if wronge ==3:
+                        print("\033[31myour attempts to log in is over \033[0m")
+                        return False
+            elif self.password == self.old_password:
+                    print("Good luck")
+                    self.stop = False
+                    return self.password
             else:
-                print("I'm sorry, my friend, but your password is weak")
-                print("You must use special symbols, uppercase and lowercase letters,numbers, and 8 chars .")
+                print("I'm sorry, my friend, but this is not your password")
                 wronge += 1
                 if wronge ==3:
                     print("\033[31myour attempts to log in is over \033[0m")
@@ -98,7 +109,7 @@ class User:
             with open('data\\data.json', 'r') as file:
                 
                 user_data = json.load(file)
-                #########
+                #
         except (json.JSONDecodeError, FileNotFoundError):
             user_data = {}
             
@@ -117,9 +128,10 @@ class User:
             with open('data\\data.json', 'r') as file:
                 user_data = json.load(file)
                 user_info = user_data.get(self.user_name, {})
-                self.password = user_info.get("password", self.password)
-                self.log_phone_usa = user_info.get("log_phone_usa", self.log_phone_usa)
+                self.old_password = user_info.get("password", self.password)
+                # self.log_phone_usa = user_info.get("log_phone_usa", self.log_phone_usa)
                 self.task_list = user_info.get("task_list", {})
+                return 1
             
         except (json.JSONDecodeError, FileNotFoundError):
             with open('data\\data.json', "w") as file:
@@ -129,4 +141,3 @@ class User:
 
 
 #you should apply object to json & json to object 
-

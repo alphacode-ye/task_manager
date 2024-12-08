@@ -3,6 +3,7 @@
 from task_manager import user,task,subtask,pomodoro_timer,category
 import sys
 from time import sleep
+from datetime import time
 import json
 
 class Controller:
@@ -24,9 +25,9 @@ class Controller:
         sleep(0.50)
         self.User_name = input("\033[46menter your name:\033[0m\n")
         
-        self.User_password = user.User(None,None)._password_check()
+        self.User_password = user.User(self.User_name,None)._password_check()
         if self.User_password == False:
-            print("\033[41m\033[1mI am sorry, but tha app will be turned off\ni hope to restart and loge in again\033[0m")
+            print("\033[41m\033[1mI am sorry, but tha app will be turned off\nI hope to restart and log in again\033[0m")
             seconds = 10
             while seconds + 1:
                 mins, secs = divmod(seconds, 60)
@@ -35,18 +36,33 @@ class Controller:
                 sleep(1)
                 seconds -= 1
             sys.exit()
-        
-        self.User_log_phone = input("\033[46menter loge phone use:\033[0m\n")
+            
+        while True:
+            print("\033[46menter loge phone use:\033[0m\n")
+            print("    hours",end="\r")
+            self.hours = input("")
+            print("    minutes",end="\r")
+            self.minutes = input("")
+            if self.hours.isdigit() and self.minutes.isdigit():
+                m = int(self.minutes) // 60
+                self.hours = int(self.hours) + m
+                self.minutes = int(self.minutes) % 60
+                t = time(self.hours,self.minutes)
+                self.User_log_phone = t.strftime("%H:%M").lstrip('0')
+                break
+            else:
+                print("The entered value is not a number.")
+            
         return self.User_name,self.User_password,self.User_log_phone
     
     def start_program(self):
         text = """\n\n        \033[1m\033[31mTASK MENU \033[0m   
 1.crate task       2.viwe task        3.edit task   
-4.marke comblet    5.add subtske      6.log phoneus  
+4.marke comblet    5.add subtske      6.log phone use  
 7.pomodoro time    8.delete task      9.mark subtask complete  
 10.time tracking   11.stop tracking   12.git time spent
-13.reset time 
-                                                    0.[exit]
+13.reset time     14.task to category 15.change password
+                                                    0.[exit and save]
     \n"""
         while True:
             for i in text:
@@ -54,7 +70,7 @@ class Controller:
                 sleep(0.02)
             user_chooes = input("choose namber:\n")
             self.user.load_user_data()
-            if user_chooes.isdigit() and int(user_chooes) <= 20:
+            if user_chooes.isdigit() and int(user_chooes) <= 15:
                 user_chooes = int(user_chooes)
                 if user_chooes == 1 :
                     self.user.create_task()
@@ -62,20 +78,25 @@ class Controller:
                     self.user.view_tasks()
                 elif user_chooes == 3:
                     self.task.edit_task()
+                    self.task.save_user_data()
                 elif user_chooes == 4:
                     self.task.mark_complete()
+                    self.task.save_user_data()
                 elif user_chooes == 5:
-                    self.task.add_subtask()
+                    sub = input("what is the subtask:\n")
+                    self.task.add_subtask(sub)
+                    self.task.save_user_data()
                 elif user_chooes == 6:
-                    self.user.log_phone_usa()
+                    self.user.log_phone_usage()
                 elif user_chooes == 7:
                     self.pomodoro.start_sessions()
                 elif user_chooes == 8:
                     self.task.delete_task()
+                    self.task.save_user_data()
                 elif user_chooes == 9:
                     self.subtask.mark_complete()
                 elif user_chooes == 10:
-                    self.subtask.mark_complete()
+                    self.time_tracking.start_timer()
                 elif user_chooes == 11:
                     self.time_tracking.stop_timer()
                 elif user_chooes == 12:
@@ -84,10 +105,41 @@ class Controller:
                     self.time_tracking.reset_timer()
                 elif user_chooes == 14:
                     s = self.js_to_da()
-                    a =self.category.WorkTask(s[0],s[1],s[2],s[3]).task_info()
-                    print(f"\n\n{a}")
-                    sleep(1)
+                    if s:
+                        print("categorys:\n\t[1].work\n\t[2].study\n\t[3].Personal")
+                        a = input("")
+                        if a.isdigit() and int(a) <= 3 and int(a) >= 0 :
+                            a = int(a)
+                            if a == 1 :
+                                categoryW =self.category.WorkTask(s[0],s[1],s[2],s[3]).task_info()
+                                print(f"\n\n{categoryW}")
+                                sleep(2)
+                            if a == 2 :
+                                categoryS =self.category.StudyTask(s[0],s[1],s[2],s[3]).task_info()
+                                print(f"\n\n{categoryS}")
+                                sleep(2)
+                            if a == 3 :
+                                categoryP =self.category.PersonalTask(s[0],s[1],s[2],s[3]).task_info()
+                                print(f"\n\n{categoryP}")
+                                sleep(2)
+                        else:
+                            print("wrong choice")
+                        
+                elif user_chooes == 15:
+                    old_password = user.User(self.User_name,self.User_password)._password_check()
+                    if old_password != False:
+                        print("now enter the new password")
+                        new_password = user.User(None,None)._password_check()
+                        self.User_password = new_password
+                        self.user =user.User(self.User_name , self.User_password , self.User_log_phone)
+                        self.user.save_user_data()
+                    else :
+                        print("Try again")
                     
+                
+                
+                
+                
                 
                 
                 
@@ -122,3 +174,4 @@ class Controller:
 
 f = Controller()
 f.start_program()
+

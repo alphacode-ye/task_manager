@@ -1,36 +1,26 @@
 {
     "yswef": {
         "name": "yswef",
-        "password": "yswef123",
-        "log_phone_usa": "5:22",
+        "password": "i love asta",
+        "log_phone_usa": "10:12",
         "task_list": {
             "Complete the project": {
                 "task": "Complete the project",
                 "description": "complete task manager progict ",
                 "deadline": "30-1-2025",
                 "priority": "red",
-                "status": "In progress",
-                "subtask": []
-            },
-            "sleep": {
-                "description": "go to sleep",
-                "deadline": "10-3-2025",
-                "priority": "green",
-                "status": "In progress",
+                "status": "Complete",
                 "subtask": [
                     {
-                        "love1": "In progress"
-                    },
-                    {
-                        "love2": "Complete"
+                        "love yswef": "Complete"
                     }
                 ]
             },
-            "eat food": {
-                "task": "eat food",
-                "description": "any thing",
-                "deadline": "3",
-                "priority": "Green",
+            "love myself ": {
+                "task": "love myself ",
+                "description": "i cant love myself in 2024",
+                "deadline": "2025-01-01",
+                "priority": "Yellow",
                 "status": "In progress",
                 "subtask": []
             }
@@ -48,11 +38,5 @@
                 "subtask": []
             }
         }
-    },
-    "yswef1": {
-        "name": "yswef",
-        "password": "yswef1234",
-        "log_phone_usa": "5:22",
-        "task_list": {}
     }
 }

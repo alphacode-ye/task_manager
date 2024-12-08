@@ -2,6 +2,7 @@
 import json
 import time
 import os
+
 from task_manager.user import User
 
 class Tasks_manager(User):
@@ -143,6 +144,7 @@ class Tasks_manager(User):
         }
         with open(self.get_data_file_path(), 'w') as file:
             json.dump(user_data, file, indent=4)
+            file.close()
 
     
     def add_subtask(self, subtask1):
@@ -151,6 +153,7 @@ class Tasks_manager(User):
         self.subtasks.append(subtask1)
         try:
             self.task_list[self.target]["subtask"].append(subtask1)
+            # self.save_user_data()
             return self.subtasks
         except:
             self.task_list[self.target]["subtask"] = []
