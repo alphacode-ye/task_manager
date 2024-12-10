@@ -37,7 +37,7 @@ class User:
         # should be enum
         self.status = ("In progress")
         # edit your question UX
-        priority = input("Enter task important [\u001b[31m1 = red,\u001b[33m 2 = yellow,\u001b[32m 3 = green\u001b[0m]\n")
+        priority = input("Enter task important [\u001b[31m1 = Red,\u001b[33m 2 = Yellow,\u001b[32m 3 = Green\u001b[0m]\n")
         self.new_task_priority = self.task_priorityS[int(priority) - 1]
         
         self.task_list[self.new_task] = {

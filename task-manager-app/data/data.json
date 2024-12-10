@@ -2,12 +2,12 @@
     "yswef": {
         "name": "yswef",
         "password": "i love asta",
-        "log_phone_usa": "10:12",
+        "log_phone_usa": "12:15",
         "task_list": {
             "Complete the project": {
                 "task": "Complete the project",
                 "description": "complete task manager progict ",
-                "deadline": "30-1-2025",
+                "deadline": "2025-1-30",
                 "priority": "red",
                 "status": "Complete",
                 "subtask": [
@@ -23,6 +23,46 @@
                 "priority": "Yellow",
                 "status": "In progress",
                 "subtask": []
+            },
+            "love": {
+                "task": "love",
+                "description": "i cant love myself in 2024",
+                "deadline": "2024-12-07",
+                "priority": "Yellow",
+                "status": "In progress",
+                "subtask": []
+            },
+            "Notifications class": {
+                "task": "Notifications class",
+                "description": "i cant love myself in 2024",
+                "deadline": "2024-12-12",
+                "priority": "Yellow",
+                "status": "Complete",
+                "subtask": []
+            },
+            "git a phone": {
+                "task": "git a phone",
+                "description": "i want phoneeeeeeeeeeeee pleaseeeeee",
+                "deadline": "2024-12-09",
+                "priority": "Red",
+                "status": "In progress",
+                "subtask": [
+                    {
+                        "128 GB": "In progress"
+                    },
+                    {
+                        "git 100$": "In progress"
+                    },
+                    {
+                        "8 or 10 RAM": "In progress"
+                    },
+                    {
+                        "yemen mopile card and you card  ": "In progress"
+                    },
+                    {
+                        "i want cry ": "Complete"
+                    }
+                ]
             }
         }
     },

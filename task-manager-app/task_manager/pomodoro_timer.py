@@ -67,7 +67,7 @@ class Pomodoro_time:
             
             self.start_timer(self.work_time)
             
-            noet = threading.Thread(target=self.notif.app_notification, args=("Focus time end", time_not, ))
+            noet = threading.Thread(target=self.notif.app_notification, args=("Focus time end", time_not ))
             noet.start()
             noet.join()
             

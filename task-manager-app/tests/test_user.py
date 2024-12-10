@@ -20,7 +20,7 @@ class TestUser(unittest.TestCase):
         task_deadlien = datetime.strptime('2024-12-31', "%Y-%m-%d" ).date()
         self.assertIn('Complete the project', self.test_User.task_list)
         self.assertEqual(self.test_User.task_list['Complete the project']['description'], 'Project description')
-        self.assertEqual(self.test_User.task_list['Complete the project']['deadline'], task_deadlien)
+        self.assertEqual(self.test_User.task_list['Complete the project']['deadline'], f"{task_deadlien}")
         self.assertEqual(self.test_User.task_list['Complete the project']['priority'], 'Red')
 
     def test_log_phone_usage(self):
