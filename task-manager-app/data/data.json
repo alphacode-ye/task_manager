@@ -1,0 +1,42 @@
+{
+    "yswef": {
+        "name": "yswef",
+        "password": "i love asta",
+        "log_phone_usa": "10:12",
+        "task_list": {
+            "Complete the project": {
+                "task": "Complete the project",
+                "description": "complete task manager progict ",
+                "deadline": "30-1-2025",
+                "priority": "red",
+                "status": "Complete",
+                "subtask": [
+                    {
+                        "love yswef": "Complete"
+                    }
+                ]
+            },
+            "love myself ": {
+                "task": "love myself ",
+                "description": "i cant love myself in 2024",
+                "deadline": "2025-01-01",
+                "priority": "Yellow",
+                "status": "In progress",
+                "subtask": []
+            }
+        }
+    },
+    "test": {
+        "name": "test",
+        "task_list": {
+            "eat any thing": {
+                "task": "eat any thing",
+                "description": "40",
+                "deadline": "12-12-2024",
+                "priority": "red",
+                "status": "In progress",
+                "subtask": []
+            }
+        }
+    }
+}
